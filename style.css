@@ -1,0 +1,291 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%; /* Removes mobile automatic text zoom issues */
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #fff;
+  color: #222;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* TYPOGRAPHY SCALE (fixes “small UI”) */
+h1 { font-size: clamp(2rem, 5vw, 3rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
+p { font-size: clamp(1rem, 2vw, 1.1rem); }
+
+/* NAV */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 8%;
+  background: rgba(255, 255, 255, 0.85); /* Slightly less translucent for clean text background */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1000;
+  transition: .3s;
+}
+
+.logo {
+  color: #e88daa;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #e88daa;
+}
+
+/* BUTTONS */
+.book-btn {
+  background: #e88daa;
+  color: #fff;
+  padding: 12px 22px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: .3s;
+  display: inline-block;
+}
+
+.book-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(232, 141, 170, .3);
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #e88daa;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: .3s;
+  box-shadow: 0 10px 25px rgba(232, 141, 170, .3);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(232, 141, 170, .5);
+}
+
+/* HERO (INDEX ONLY) - With Fixed Positive Layer Support */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Clips the video container limits */
+  padding: 0 6%;
+  background: #111; /* Fallback ground color */
+}
+
+/* Layer 1: Base foreground level */
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Layer 2: Shaded overlay above video layer */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%);
+  z-index: 2;
+}
+
+/* Layer 3: High-contrast typography sits at top */
+.hero-content {
+  position: relative;
+  text-align: center;
+  color: white;
+  max-width: 900px;
+  z-index: 3;
+}
+
+.hero-content h2 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+}
+
+/* LUXURY TAGLINE STYLE */
+.hero-tagline {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #e88daa;
+  margin-bottom: 15px;
+}
+
+/* PAGE HERO (FIXES “inconsistent pages”) */
+.page-hero {
+  padding: 160px 8% 90px;
+  text-align: center;
+  background: linear-gradient(135deg, #ffe4ec, #ffffff);
+}
+
+.page-hero p {
+  opacity: .7;
+}
+
+/* SECTIONS (FIXES spacing issue) */
+.section {
+  padding: 110px 8%;
+}
+
+/* SECTION TITLE */
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* CARDS (FIXES “small UI + weak feel”) */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: rgba(255, 255, 255, .8);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, .08);
+  transition: .4s;
+}
+
+.card:hover {
+  transform: translateY(-12px) scale(1.02);
+}
+
+.card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: .5s;
+}
+
+.card:hover img {
+  transform: scale(1.08);
+}
+
+.card-content {
+  padding: 18px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 50px;
+  background: #111;
+  color: #fff;
+  margin-top: 60px;
+}
+
+/* MOBILE FIX (Removes layout zoom issues and prevents hidden navbars) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 5%;
+    flex-direction: column; /* Stacks navigation blocks cleanly */
+    gap: 12px;
+    position: relative; /* Prevents overlap errors over mobile content elements */
+    background: rgba(255, 255, 255, 0.98);
+  }
+
+  .nav-links {
+    display: flex; /* Restores navigation visibility */
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+  }
+
+  .hero {
+    height: calc(100vh - 100px);
+    min-height: 460px;
+  }
+
+  .hero-content h2 {
+    font-size: 2.2rem;
+  }
+
+  .section {
+    padding: 80px 6%;
+  }
+
+  .page-hero {
+    padding: 120px 6% 70px;
+  }
+  
+  .cards {
+    grid-template-columns: 1fr; /* Prevents cards from smashing on thin displays */
+  }
+
+  .hero-tagline {
+    font-size: 2.0rem;
+    color: #e88daa; /* Keeps your branding color choice cohesive on mobile screen heights */
+  }
+  /* Premium editorial tint for all pages */
+body {
+  background: #FCFBFA; 
+}
+
+/* Centers page layouts on massive desktop monitors */
+.section {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Elegant spacing for inner card descriptions */
+.card-content p {
+  color: #555;
+  font-size: 0.95rem;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+}
