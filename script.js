@@ -11,7 +11,7 @@ window.addEventListener("scroll", () => {
 
 // WhatsApp booking system
 function book(room) {
-  const number = "233208530897‬";
+  const number = "233244628846";
   
   const msg = `Hello Rozebo Hotel,
 I want to book:
